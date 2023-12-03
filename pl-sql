@@ -1,0 +1,100 @@
+
+DECLARE
+
+   TODAY DATE := SYSDATE;
+   TOMORROW TODAY%TYPE;
+
+BEGIN
+ 
+   DBMS_OUTPUT.PUT_LINE('Hello World');
+
+  
+   TOMORROW := TODAY + 1;
+   DBMS_OUTPUT.PUT_LINE('Today: ' || TODAY);
+   DBMS_OUTPUT.PUT_LINE('Tomorrow: ' || TOMORROW);
+
+END;
+
+
+DECLARE
+
+   TODAY DATE := SYSDATE;
+   TOMORROW TODAY%TYPE;
+
+BEGIN
+  
+   DBMS_OUTPUT.PUT_LINE('Hello World');
+
+  
+   TOMORROW := TODAY + 1;
+   DBMS_OUTPUT.PUT_LINE('Today: ' || TODAY);
+   DBMS_OUTPUT.PUT_LINE('Tomorrow: ' || TOMORROW);
+
+END;
+
+
+DECLARE
+   -- Declarative Section
+   my_date DATE := TO_DATE(TO_CHAR(SYSDATE, 'Month dd, yyyy'), 'Month dd, yyyy');
+   v_last_day DATE;
+
+BEGIN
+ 
+   DBMS_OUTPUT.PUT_LINE('Formatted Date: ' || TO_CHAR(my_date, 'Month dd, yyyy'));
+
+
+   v_last_day := LAST_DAY(my_date);
+   DBMS_OUTPUT.PUT_LINE('Last Day of the Month: ' || v_last_day);
+
+END;
+
+
+DECLARE
+ 
+   today_date DATE := SYSDATE;
+   future_date DATE;
+   months_diff NUMBER;
+
+BEGIN
+
+   DBMS_OUTPUT.PUT_LINE('Today: ' || today_date);
+
+  
+   future_date := today_date + 45;
+   DBMS_OUTPUT.PUT_LINE('Future Date (45 days later): ' || future_date);
+
+
+   months_diff := MONTHS_BETWEEN(future_date, today_date);
+   DBMS_OUTPUT.PUT_LINE('Number of Months Difference: ' || months_diff);
+
+END;
+
+
+
+
+
+
+
+CREATE TABLE countries (
+    country_name VARCHAR2(50),
+    median_age NUMBER(6, 2)
+);
+
+
+INSERT INTO countries (country_name, median_age) VALUES ('Japan', 48.2);
+INSERT INTO countries (country_name, median_age) VALUES ('United States', 38.5);
+INSERT INTO countries (country_name, median_age) VALUES ('Germany', 45.1);
+
+
+
+DECLARE
+   v_country_name countries.country_name%TYPE;
+   v_median_age countries.median_age%TYPE;
+BEGIN
+   SELECT country_name, median_age
+   INTO v_country_name, v_median_age
+   FROM countries
+   WHERE country_name = 'Japan';
+
+   DBMS_OUTPUT.PUT_LINE('The median age in ' || v_country_name || ' is ' || v_median_age || '.');
+END;

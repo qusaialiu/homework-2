@@ -34,7 +34,7 @@ END;
 
 
 DECLARE
-   -- Declarative Section
+
    my_date DATE := TO_DATE(TO_CHAR(SYSDATE, 'Month dd, yyyy'), 'Month dd, yyyy');
    v_last_day DATE;
 
